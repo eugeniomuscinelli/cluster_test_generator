@@ -97,8 +97,25 @@ Replace:
 - `<stimuli_file_name>` with your desired name for the output file.
 
 ---
+## 5. Adjust the .txt File
 
-## 5. Generate the Final C Header File
+Before generating the C header file, open the `.txt` file produced in the previous step with a text editor.  
+The first entries will look something like this:
+
+```
+0000000_0000000000000000
+50000008_0000000000000000
+50000010_0000000000000000
+50000018_0000000000000000
+```
+
+Delete all rows up to (and including) the one just before the entry corresponding to the base address of the region reserved for the accelerator (usually `A0103680`).  
+
+This step is required because the `stim_utils.py` script also generates entries that are not relevant for the application.  
+If this cleanup is not performed, the next step will fail.
+
+
+## 6. Generate the Final C Header File
 
 To convert the `.txt` file into a header file suitable for ESP integration:
 
